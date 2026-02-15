@@ -17,7 +17,7 @@ export default function Home() {
           router.replace("/login");
         }
       }
-    }, 10000);
+    }, 3000);
 
     return () => clearTimeout(timer);
   }, [user, isLoading, router]);

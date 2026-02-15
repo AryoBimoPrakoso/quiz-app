@@ -1,14 +1,14 @@
-
-import LogoutAlert from "@/components/LogoutAlertDialog/LogoutAlert";
-
-
-
-export default function QuizPage() {
+import { getGeneralQuestion } from "@/lib/generalQuestions";
+import QuizClient from "./QuizClient";
+import OptionQuiz from "@/components/optionQuiz/OptionQuiz";
 
 
+export default async function QuizPage() {
+  const questions = await getGeneralQuestion();
   return (
-    <div className="grid place-items-center h-screen">
-      <LogoutAlert/>
+    <div className="h-screen grid place-items-center">
+      <QuizClient questions={questions} />
+      <OptionQuiz/>
     </div>
   );
 }
