@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { Question } from "@/types/generalQuestions";
+import { Question } from "@/types/Questions";
 import { useQuiz } from "@/context/quizContext";
 import QuestionCard from "@/components/cardQuiz/QuestionCard";
 

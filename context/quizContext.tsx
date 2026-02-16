@@ -1,33 +1,39 @@
 "use client";
 import { createContext, use, useContext, useState } from "react";
-import { Question } from "@/types/generalQuestions";
+import { Question } from "@/types/Questions";
 
 type QuizState = {
   questions: Question[];
   currentIndex: number;
   answers: string[];
   setQuestions: (q: Question[]) => void;
-  answerQuestion: (answer: string) => void;
+  answerQuestion: (index: number, answer: string) => void;
   nextQuestion: () => void;
+  prevQuestion: () => void;
 };
 
 const QuizContext = createContext<QuizState | null>(null);
 
 export function QuizProvider({ children }: { children: React.ReactNode }) {
   const [questions, setQuestions] = useState<Question[]>([]);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(1);
   const [answers, setAnswers] = useState<string[]>([]);
 
-  function answerQuestion(answer: string) {
+
+  function answerQuestion(index: number, answer: string) {
     setAnswers((prev) => {
       const copy = [...prev];
-      copy[currentIndex] = answer;
+      copy[index] = answer;
       return copy;
     });
   }
 
   function nextQuestion() {
     setCurrentIndex((i) => i + 1);
+  }
+
+  function prevQuestion() {
+    setCurrentIndex((i) => i - 1)
   }
 
   return (
@@ -39,6 +45,7 @@ export function QuizProvider({ children }: { children: React.ReactNode }) {
         setQuestions,
         answerQuestion,
         nextQuestion,
+        prevQuestion,
       }}
     >
       {children}

@@ -6,7 +6,7 @@ import OptionQuiz from "@/components/optionQuiz/OptionQuiz";
 export default async function QuizPage() {
   const questions = await getGeneralQuestion();
   return (
-    <div className="h-screen grid place-items-center">
+    <div className="h-screen flex justify-center items-center">
       <QuizClient questions={questions} />
       <OptionQuiz/>
     </div>
